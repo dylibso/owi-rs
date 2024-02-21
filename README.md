@@ -1,4 +1,4 @@
-# owi-rust
+# owi-rs
 
 Rust bindings to the [Owi](https://github.com/OCamlPro/owi) symbolic runtime.
 
