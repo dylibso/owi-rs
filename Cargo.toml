@@ -6,3 +6,6 @@ readme = "README.md"
 license = "LICENSE"
 
 [dependencies]
+
+[features]
+nightly = []

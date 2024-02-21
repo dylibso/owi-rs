@@ -1,4 +1,5 @@
 #![no_std]
+#![cfg_attr(feature = "nightly", feature(asm_experimental_arch))]
 
 pub mod sys {
     #[link(wasm_import_module = "symbolic")]
@@ -43,4 +44,36 @@ pub fn u32_symbol() -> u32 {
 #[doc = "Create a `u64` symbolic value"]
 pub fn u64_symbol() -> u64 {
     i64_symbol() as u64
+}
+
+#[cfg(feature = "nightly")]
+pub fn and(_: bool, _: bool) {
+    unsafe {
+        core::arch::asm!(
+            "local.get 0;",
+            "i32.const 0;",
+            "i32.ne;",
+            "local.get 1;",
+            "i32.const 0;",
+            "i32.ne;",
+            "i32.and;",
+            "return;"
+        )
+    }
+}
+
+#[cfg(feature = "nightly")]
+pub fn or(_: bool, _: bool) {
+    unsafe {
+        core::arch::asm!(
+            "local.get 0;",
+            "i32.const 0;",
+            "i32.ne;",
+            "local.get 1;",
+            "i32.const 0;",
+            "i32.ne;",
+            "i32.or;",
+            "return;"
+        )
+    }
 }
