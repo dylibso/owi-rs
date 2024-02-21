@@ -44,3 +44,18 @@ pub fn u32() -> u32 {
 pub fn u64() -> u64 {
     i64() as u64
 }
+
+#[macro_export]
+macro_rules! main {
+    ($b:block) => {
+        #[panic_handler]
+        fn panic(_info: &core::panic::PanicInfo) -> ! {
+            core::arch::wasm32::unreachable()
+        }
+
+        #[no_mangle]
+        pub unsafe fn _start() {
+            $b
+        }
+    };
+}
