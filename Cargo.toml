@@ -4,5 +4,6 @@ version = "0.1.0"
 edition = "2021"
 readme = "README.md"
 license = "LICENSE"
+repository = "https://github.com/dylibso/owi-rs"
 
 [dependencies]
