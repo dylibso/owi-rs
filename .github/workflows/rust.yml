@@ -11,10 +11,14 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v3
+    - uses: actions-rs/toolchain@v1
+      with:
+        profile: default
+        toolchain: stable
+        target: wasm32-unknown-unknown
+        default: true
     - name: Build
       run: cargo build --verbose --target wasm32-unknown-unknown
