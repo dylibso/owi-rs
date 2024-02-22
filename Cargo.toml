@@ -3,7 +3,8 @@ name = "owi"
 version = "0.1.0"
 edition = "2021"
 readme = "README.md"
-license = "LICENSE"
+license = "BSD-3-Clause"
 repository = "https://github.com/dylibso/owi-rs"
+description = "Bindings to the Owi symbolic runtime"
 
 [dependencies]

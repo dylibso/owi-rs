@@ -1,6 +1,8 @@
 #![no_std]
+//! A crate for generating WebAssembly modules that can be executed using the
+//! [Owi](https://github.com/OCamlPro/owi) symbolic runtime
 
-pub mod sys {
+mod sys {
     #[link(wasm_import_module = "symbolic")]
     extern "C" {
         pub fn i8_symbol() -> i8;
@@ -45,9 +47,12 @@ pub fn u64() -> u64 {
     i64() as u64
 }
 
+/// `main!` is used to setup the `_start` function and, when compiling for
+/// `wasm32-unknown-unknown` it also sets up the panic handler.
 #[macro_export]
 macro_rules! main {
     ($b:block) => {
+        #[cfg(all(target_arch = "wasm32", target_os = "unknown"))]
         #[panic_handler]
         fn panic(_info: &core::panic::PanicInfo) -> ! {
             core::arch::wasm32::unreachable()
